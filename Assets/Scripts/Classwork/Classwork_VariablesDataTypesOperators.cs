@@ -51,7 +51,7 @@ public class L5_Variables_Operators_Reps : MonoBehaviour
         //            int g = "20";
 
         // TODO 26. SWAP: int a = 3; int b = 8; write code that swaps them so
-        //          a becomes 2 and b becomes 1. Try this first with an extra
+        //          a becomes 8 and b becomes 3. Try this first with an extra
         //          variable, then do it without any other variables.
 
         // TODO 27. SECONDS TO CLOCK: given int totalSeconds, print hours, 
@@ -59,8 +59,5 @@ public class L5_Variables_Operators_Reps : MonoBehaviour
         //              125, output is "2m 5s"
         //              3600, output is "1h"
         //              10000, output is "2h 46m 40s"
-
-        // TODO 28. EVERY THIRD HIT: a sword deals 10 damage, but every 3rd hit
-        //          deals double. Using %, print the damage of hits 1 to 6.
     }
 }
