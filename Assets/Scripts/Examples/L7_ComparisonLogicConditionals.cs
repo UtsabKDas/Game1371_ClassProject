@@ -11,7 +11,8 @@ public class L7_ComparisonLogicConditionals : MonoBehaviour
         // Declare two ints, assign them to values of your choice. Print the
         // result of each comparison operator we went through in class.
 
-        // Print (5 == 5) and (5 = 5). One of these is a bug. Which, and why?
+        // I have two lines of code: bool x = (5 == 5) and bool y = (5 = 5).
+        // One of these is a bug. Which, and why?
 
         // Print the result of "cat" == "cat" and "cat" == "Cat".
         // Are strings case-sensitive here?
