@@ -5,32 +5,39 @@ public class DungeonGame : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        const int goldInHall = 12;
         const int swordBonus = 7;
         const int trapDamage = 20;
         const int shieldBonus = 4;
         const int treasureGold = 11;
         const int potionPrice = 5;
 
+
+
+        // ----- the hero's stats -----
         string playerName = "Hero";
         int playerHealth = 100;
-        int attack = 5;
+        int playerAttack = 5;
         int agility = 3;
         int gold = 0;
         bool hasKey = false;
         int defense = 0;
+        bool takeLeftPath = true;    // flip to test the other route
+
         int goblinHealth = 20;
         int goblinAttack = 8;
         int goblinDefense = 2;
+        int goblinArmorClass = 10;
 
+        int playerRoomIndex = 0;
         Debug.Log("=== THE DUNGEON ===");
         Debug.Log("Welcome, " + playerName + ". Your escape begins.");
 
         Debug.Log("");
         Debug.Log("The Entrance Hall");
         Debug.Log("A torch flickers on the wall. A stone doorway leads north.");
-        
-        if(goldInHall < 10)
+        const int goldInEntranceHall = 12;
+
+        if (goldInEntranceHall < 10)
         {
             Debug.Log("Just a few coins");
         }
@@ -39,15 +46,15 @@ public class DungeonGame : MonoBehaviour
             Debug.Log("A decent purse");
         }
             
-        gold += goldInHall;
+        gold += goldInEntranceHall;
         Debug.Log("You gather some coins. Gold is now " + gold + ".");
         Debug.Log("You move into the next room.");
 
         Debug.Log("");
         Debug.Log("The Guard Room");
         Debug.Log("A rusty sword rests on a table. A goblin snores in the corner.");
-        attack += swordBonus;
-        Debug.Log("You take the sword. Attack is now " + attack + ".");
+        playerAttack += swordBonus;
+        Debug.Log("You take the sword. Attack is now " + playerAttack + ".");
 
         Debug.Log("");
         Debug.Log("The goblin wakes and charges after you!");
@@ -67,7 +74,7 @@ public class DungeonGame : MonoBehaviour
             Debug.Log("Tis but a flesh wound");
         }
         Debug.Log("The goblin hits you. Your health is now " + playerHealth + ".");
-        goblinHealth -= attack - goblinDefense;
+        goblinHealth -= playerAttack - goblinDefense;
         Debug.Log("You strike back. Goblin health is now " + goblinHealth + ".");
         if (goblinHealth <= 0)
         {

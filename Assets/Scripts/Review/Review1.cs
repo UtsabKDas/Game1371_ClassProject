@@ -56,7 +56,7 @@ public class Review1 : MonoBehaviour
         // int rounds = 0;
         // while (enemies > 1)
         // {
-        //     enemies /= 2;
+        //     enemies = enemies / 2;
         //     rounds++;
         // }
         // Debug.Log(enemies + " " + rounds);
@@ -67,33 +67,36 @@ public class Review1 : MonoBehaviour
         // ==================================================================
 
         // B1. Meant: Dead at 0 or below, Low under 30, otherwise Fine.
-        // int hp = 10;
-        // if (hp < 100)
-        // {
-        //     Debug.Log("Fine");
-        // }
-        // else if (hp < 30)
-        // {
-        //     Debug.Log("Low Health");
-        // }
-        // else if (hp <= 0)
-        // {
-        //     Debug.Log("Dead");
-        // }
+        //90int hp = 10;
+        //90
+        //90if (hp <= 0)
+        //90{
+        //90    Debug.Log("Dead");
+        //90}
+        //90else if (hp < 30)
+        //90{
+        //90    Debug.Log("Low Health");
+        //90}
+        //90else
+        //90{
+        //90    Debug.Log("Fine");
+        //90}
 
         // B2. Average of three scores.
-        // int a = 90, b = 85, c = 78;
-        // float average = (a + b + c) / 3;
-        // Debug.Log(average);
+        //int a = 90, b = 85, c = 78;
+        //double average = (a + b + c) / 3;
+        //Debug.Log(average);
 
         // B3. Meant to fight while BOTH still have health.
-        // int heroHP = 30;
-        // int goblinHP = 20;
-        // while (heroHP > 0 || goblinHP > 0)
-        // {
-        //     heroHP -= 5;
-        //     goblinHP -= 7;
-        // }
+        int heroHP = 30;
+        int goblinHP = 20;
+        while (heroHP > 0 && goblinHP > 0)
+        {
+            heroHP -= 5;
+            goblinHP -= 7;
+        }
+
+
 
         // ==================================================================
         // PART C  -  APPLICATION
@@ -103,6 +106,14 @@ public class Review1 : MonoBehaviour
         //     gold and add it to your total. The moment your total reaches 40 or
         //     more, or if 5 turns pass, stop grabbing right then and escape.
         //     Simulate this using what we have learned. 
+        int turns = 5;
+        int gold = 0;
+        while(turns > 0 && gold < 40)
+        {
+            gold += Random.Range(3,9);
+            turns -= 1;
+        }
+        Debug.Log("You escaped. You got " + gold + " gold!");
 
         // C2. MONSTER FIGHT: you have 100 health, you fight a monster with 30
         //     health. Each of your attacks deals a random 4-9 damage. Every other
@@ -113,6 +124,46 @@ public class Review1 : MonoBehaviour
         //     of attacks the player did. If the monster wins, output the number
         //     of attacks the monster did)
 
+        int health = 100;
+        int monsterHealth = 30;
+        int attacks = 0;
+        int monsterAttacks = 0;
+
+
+        int n = 1;
+        for (int m = 1; ; m++)
+        {
+            Debug.Log("You attack!");
+            attacks++;
+            int damage = Random.Range(4, 10);
+            Debug.Log("You deal " + damage + " damage!");
+            monsterHealth -= damage;
+            Debug.Log("The monster has " + monsterHealth + " health remaining.");
+            if (monsterHealth <= 0)
+            {
+                Debug.Log("You defeated the monster in " + attacks + " hits!");
+                break;
+            }
+
+            if (m % 2 == 1)
+            {
+                Debug.Log("The monster attacks!");
+                monsterAttacks++;
+                int monsterDamage = Random.Range(3, 6);
+                Debug.Log("The monster deals " + monsterDamage + " damage!");
+                health -= monsterDamage;
+                Debug.Log("You have " + health + " health remaining.");
+                if (health <= 0)
+                {
+                    Debug.Log("You were defeated in " + monsterAttacks + " hits!");
+                    break;
+                }
+            }
+        }
+
+
+
+
         // ==================================================================
         // PART D  -  MINI-INTERVIEW: Solve with what we've learned so far
         // ==================================================================
@@ -120,6 +171,26 @@ public class Review1 : MonoBehaviour
         // D1. TRAP OR TREASURE: for turns 1 to 50, every 4th turn print "Trap",
         //     every 7th turn print "Treasure", a turn that is both prints
         //     "Jackpot", and any other turn prints the turn number.
+
+        for(int turn = 1; turn <= 50; turn++)
+        {
+            if (turn % 7 == 0 && turn % 4 == 0)
+            {
+                Debug.Log("Jackpot");
+            }
+            else if (turn % 7 == 0)
+            {
+                Debug.Log("Treasure");
+            }
+            else if (turn % 4 == 0)
+            {
+                Debug.Log("Trap");
+            }
+            else
+            {
+                Debug.Log(turn);
+            }
+        }
 
         // D2. REVERSE A NUMBER: given int n (try 1234), print its digits reversed
         //     (4321). Use math, not text.
@@ -135,121 +206,5 @@ public class Review1 : MonoBehaviour
         //     word.Length - 1). Given a sentence (try "the sunless keep awaits")
         //     whose words are separated by single spaces, print how many words it
         //     contains.
-
-        // ==================================================================
-        // PART E  -  EXTRA PRACTICE  (OPTIONAL: fast finishers / homework)
-        // ==================================================================
-
-        // --- more Trace & Predict ---
-        // E1. increment: post (wave++) vs pre (++wave)
-        //     int wave = 3;
-        //     int shown = wave++;
-        //     int next = ++wave;
-        //     Debug.Log(shown + " " + next + " " + wave);
-        //     My answer: ______________________________________
-        //
-        // E2. three separate ifs - which run?
-        //     bool locked = true;
-        //     bool trapped = false;
-        //     bool glowing = true;
-        //     if (locked)
-        //     {
-        //         Debug.Log("It's locked.");
-        //     }
-        //     if (trapped)
-        //     {
-        //         Debug.Log("A trap springs!");
-        //     }
-        //     if (glowing)
-        //     {
-        //         Debug.Log("It glows faintly.");
-        //     }
-        //     My answer: ______________________________________
-        //
-        // E3. do-while - how many times does the body run?
-        //     int potions = 0;
-        //     int drunk = 0;
-        //     do
-        //     {
-        //         drunk++;
-        //         potions--;
-        //     }
-        //     while (potions > 0);
-        //     Debug.Log(drunk);
-        //     My answer: ______________________________________
-        //
-        // E4. string operations
-        //     string spell = "Fireball";
-        //     Debug.Log(spell.Length);
-        //     Debug.Log(spell.ToLower());
-        //     Debug.Log(spell[spell.Length - 1]);
-        //     Debug.Log(spell.Substring(0, 4));
-        //     My answer: ______________________________________
-
-        // --- more Fix the Bug ---
-        // E5. Meant to print the odd numbers 1..9.
-        //     int i = 1;
-        //     while (i <= 9)
-        //     {
-        //         if (i % 2 == 0)
-        //         {
-        //             continue;
-        //         }
-        //         Debug.Log(i);
-        //         i++;
-        //     }
-        //
-        // E6. Meant to print each letter of the word
-        //     string word = "sword";
-        //     for (int j = 0; j <= word.Length; j++)
-        //     {
-        //         Debug.Log(word[j]);
-        //     }
-        //
-        // E7. Meant to count down from 5 to 1
-        //     for (int k = 5; k > 0; k++)
-        //     {
-        //         Debug.Log(k);
-        //     }
-
-        // --- more Application ---
-        // E8. COMBO METER: you land some number of hits in a row. Each hit is
-        //     worth 10 points, but every 5th hit is a combo worth double (20).
-        //     Print the running score after each hit, then the final score based
-        //     on a variable number of hits. 
-        // E9. TORCH SUPPLY: you have some gold; torches cost 7 each. Print how
-        //     many torches you can buy and how much gold is left over. If nothing
-        //     is left over, also print "Perfect change!"
-
-        // --- more Mini-Interview ---
-        // E10. SUM OF SQUARES: given int n (try 5), print 1*1 + 2*2 + ... + n*n. (55)
-        // E11. FACTORIAL: given int n (try 6), print n! = 1 * 2 * ... * n. (720)
-        // E12. SUM OF DIGITS: given int n (try 472), print the sum of its digits.
-        // E13. PERFECT NUMBER: given int n (try 28), a number is "perfect" when its
-        //      divisors below it add up to itself (28 = 1+2+4+7+14). Print whether
-        //      n is perfect.
-        // E14. FIBONACCI: print the first n numbers of the Fibonacci sequence
-        //      (each is the sum of the previous two, starting 0, 1).
-        // E15. GCD: given two ints a and b (try 48 and 36), print their greatest
-        //      common divisor (the largest number that divides both evenly).
-        // E16. NUMBER PALINDROME: given int n (try 12321), print whether it reads
-        //      the same forwards and backwards.
-        // E17. COLLATZ: given int n (try 6), repeat until n becomes 1: if n is
-        //      even, halve it; if odd, do 3*n + 1. Print each value, then the
-        //      number of steps it took.
-        // E18. REVERSE A STRING: given a string word (try "dungeon"), print it
-        //      backwards.
-        // E19. COUNT VOWELS: given a string phrase, print how many vowels
-        //      (a, e, i, o, u) it contains.
-
-        // --- more string parsing (walk the characters by index) ---
-        // E20. COUNT A LETTER: given a word (try "sunless") and a letter (try
-        //      's'), print how many times that letter appears.
-        // E21. STRING PALINDROME: given a word (try "level"), print whether it
-        //      reads the same forwards and backwards by comparing the characters
-        //      at both ends and working inward.
-        // E22. CENSOR THE VOWELS: given a word (try "dungeon"), build and print a
-        //      new string that is the same but with every vowel replaced by a '*'
-        //      (so "dungeon" becomes "d*ng**n").
     }
 }
