@@ -4,6 +4,8 @@ using UnityEngine;
 // Attach to an empty GameObject and press Play. We fill in the answers together.
 public class L7_ComparisonLogicConditionals : MonoBehaviour
 {
+    const int lowHealthBoundary = 30;
+
     void Start()
     {
         // ---------- COMPARISON OPERATORS ----------
@@ -97,20 +99,20 @@ public class L7_ComparisonLogicConditionals : MonoBehaviour
         // Test each branch. Does the ORDER of the conditions matter? Try
         // reordering them and see what breaks.
 
-        //int health = 20;
-        //
-        //if(health <= 0)
-        //{
-        //    Debug.Log("Dead");
-        //}
-        //else if(health < 30)
-        //{
-        //    Debug.Log("Careful!");
-        //}
-        //else
-        //{
-        //    Debug.Log("Fine");
-        //}
+        int health = 20;
+        
+        if(health <= 0)
+        {
+            Debug.Log("Dead");
+        }
+        else if(health < lowHealthBoundary)
+        {
+            Debug.Log("Careful!");
+        }
+        else
+        {
+            Debug.Log("Fine");
+        }
 
         // ---------- COMBINING & NESTING ----------
 

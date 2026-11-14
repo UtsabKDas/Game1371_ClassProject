@@ -79,15 +79,29 @@ public class Classwork_Arrays_Foreach : MonoBehaviour
         //
         // C4. SURVIVORS: given int[] enemyHealth, print how many enemies are
         //     still alive (health above 0).
+
+        int[] enemyHealth = { 30, 2, 0, 22, 0, 40 };
+        int enemiesRemaining = 0;
+        for(int i = 0; i < enemyHealth.Length; i++)
+        {
+            if(enemyHealth[i] > 0)
+            {
+                enemiesRemaining++;
+            }
+        }
+        Debug.Log(enemiesRemaining);
+
         //
         // C5. SORT THE LOOT: given an int[] of values in any order, rearrange
         //     them so they run from smallest to largest, then print them in order.
-        //
+
         // C6. FIND IN THE SORTED LOOT: using the now-sorted values from C5, look
         //     for a particular value and print whether it is in the list and, if
         //     so, at what index.
-        //
+
         // C7. PALINDROME WORD: given a word (say "level"), print whether it reads
         //     the same forwards and backwards.
+
+
     }
 }

@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class DungeonGameHW2 : MonoBehaviour
 {
+    int health = 100;
+    int gold = 0;
+    int[] goldPiles = { 10, 12, 5 };
+
     void Start()
     {
         const int goldInHall = 12;
@@ -31,10 +35,8 @@ public class DungeonGameHW2 : MonoBehaviour
         const int campfireTurns = 6;
 
         string playerName = "Hero";
-        int health = 100;
         int attack = 5;
         int agility = 3;
-        int gold = 0;
         bool hasKey = false;
         int defense = 0;
         bool takeLeftPath = true;
@@ -58,7 +60,10 @@ public class DungeonGameHW2 : MonoBehaviour
         Debug.Log("");
         Debug.Log("The Entrance Hall");
         Debug.Log("A torch flickers on the wall. A stone doorway leads north.");
-        gold += goldInHall;
+        TakeDamage();
+        AddGold(goldPiles);
+
+        //gold += goldInHall;
         Debug.Log("You scoop up coins. Gold is now " + gold + ".");
         agility += bootsAgility;
         Debug.Log("You lace on leather boots. Agility is now " + agility + ".");
@@ -87,7 +92,7 @@ public class DungeonGameHW2 : MonoBehaviour
         Debug.Log("");
         Debug.Log("The Flooded Passage");
         Debug.Log("Ankle-deep water fills the hall; a broken door waits at the far end.");
-        health -= trapDamage;
+        TakeDamage(trapDamage, Random.Range(0, 2) == 1);
         Debug.Log("A spike trap! Health is now " + health + ".");
         if (health <= 0)
         {
@@ -416,4 +421,31 @@ public class DungeonGameHW2 : MonoBehaviour
             Debug.Log("Too wounded to force the door, you can go no further...");
         }
     }
+    void TakeDamage(int damage = 10, bool critical = false)
+    {
+        if(critical)
+        {
+            health -= damage * 2;
+        }
+        else
+        {
+            health -= damage;
+        }
+    }
+
+    void AddGold(int amount)
+    {
+        gold += amount;
+    }
+
+    void AddGold(int[] amounts)
+    {
+        for(int i = 0; i < amounts.Length; i++)
+        {
+            amounts[i]++;
+            gold += amounts[i];
+        }
+    }
+
+    
 }

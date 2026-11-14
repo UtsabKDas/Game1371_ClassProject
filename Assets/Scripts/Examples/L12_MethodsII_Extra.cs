@@ -2,12 +2,23 @@ using UnityEngine;
 // Methods II in-class walkthrough. Minigame: COIN RUSH (a platformer).
 // Part 1: write our own methods. Part 2: refactor the repeated level code.
 // Attach to an empty GameObject and press Play after each step.
+
 public class L12_Methods_II_Extra : MonoBehaviour
 {
+
+    public int MaxLives = 5;
+    const int scoreForCoins = 100;
+    const int scoreForStompingEnemy = 200;
+    // This is the score
     int score = 0;
     int coins = 0;
-    int lives = 3;
+
+    int scoreBonusMultiplier = 2;
+    
+    int lives = 3;  // Number of lives the player has
+
     int nextLifeScore = 1000;   // the next score that earns a bonus life
+
 
     void AddScore(int scoreToAdd)
     {
@@ -24,7 +35,7 @@ public class L12_Methods_II_Extra : MonoBehaviour
     {
         if(isBonusActive)
         {
-            scoreToAdd *= 2;
+            scoreToAdd *= scoreBonusMultiplier;
         }
         AddScore(scoreToAdd);
     }
@@ -32,21 +43,29 @@ public class L12_Methods_II_Extra : MonoBehaviour
     void AddCoin()
     {
         coins++;
-        AddScore(100);
+        AddScore(scoreForCoins);
         Debug.Log("Grabbed a coin! Coins: " + coins + ", Score: " + score);
     }
 
     void StompEnemy()
     {
-        AddScore(200);
+        AddScore(scoreForStompingEnemy);
         Debug.Log("Stomped an enemy! Score: " + score);
     }
 
+    /// <summary>
+    /// Adds lives to the player's lives count
+    /// </summary>
+    /// <param name="livesToAdd">number of lives to add, defaults to 1</param>
     void AddLives(int livesToAdd = 1)
     {
         lives += livesToAdd;
     }
 
+    /// <summary>
+    /// Tells us if the player is dead
+    /// </summary>
+    /// <returns>true if dead, false if alive</returns>
     bool IsDead()
     {
         return lives <= 0;
@@ -156,7 +175,7 @@ public class L12_Methods_II_Extra : MonoBehaviour
         }
 
         StompEnemies(2);
-
+        IsDead();
         // B1. Replace the three coin blocks with a for loop that collects a coin
         //     three times.
 
